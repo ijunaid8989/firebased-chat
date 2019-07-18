@@ -18,6 +18,8 @@ class Chatroom {
   }
   getChats(callback) {
     this.chats
+      .where("room", "==", this.room)
+      .orderBy("created_at")
       .onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
           if (change.type === "added") {
